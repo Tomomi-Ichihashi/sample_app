@@ -21,7 +21,7 @@ class TodolistsController < ApplicationController
   private
   # ストロングパラメータ
   def list_params
-    params.require(:list).permit(:tile, :body)
+    params.permit(:title, :body)
   end
     
 end
