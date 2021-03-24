@@ -78,10 +78,10 @@ describe '詳細画面のテスト' do
     it '編集の遷移先は編集画面か' do
       edit_link = find_all('a')[0]
       edit_link.click
-      expect(current_path).to eq('/todolists/+list.id.to_s+'/edit')
+      expect(current_path).to eq('/todolists/'+list.id.to_s+'/edit')
     end
   end
-  context
+  context 'list削除のテスト'
     it 'listの削除' do
       expect {list.destroy}.to change{List.count}.by(-1)
     end
@@ -96,8 +96,8 @@ describe '編集画面のテスト' do
   
   context '表示の確認' do
     it '編集前のタイトルと本文がフォームに表示（セット）されている' do
-      expect(page).to have_field 'list[title]', with:'hoge'
-      expect(page).to have_field 'list[body]', with:'body'
+      expect(page).to have_field 'list[title]', with: list.title
+      expect(page).to have_field 'list[body]', with: list.body
     end
     
     it '保存ボタンが表示される' do
@@ -114,5 +114,4 @@ describe '編集画面のテスト' do
     end
   end
 end
-
 end
