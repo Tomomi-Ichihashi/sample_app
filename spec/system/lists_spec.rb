@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-describe '投稿のテスト'　do
+describe '投稿のテスト' do
   let!(:list) {create(:list,title:'hoge',body:'body')}
-
-describe 'トップ画面(top_path)のテスト' do
+  
+  describe 'トップ画面(top_path)のテスト' do
   before do
     visit top_path
   end
@@ -81,7 +81,7 @@ describe '詳細画面のテスト' do
       expect(current_path).to eq('/todolists/'+list.id.to_s+'/edit')
     end
   end
-  context 'list削除のテスト'
+  context 'list削除のテスト' do
     it 'listの削除' do
       expect {list.destroy}.to change{List.count}.by(-1)
     end
@@ -111,7 +111,8 @@ describe '編集画面のテスト' do
       fill_in 'list[body]', with: Faker::Lorem.characters(number:20)
       click_button '保存'
       expect(page).to have_current_path todolist_path(list)
-    end
-  end
-end
+     end
+   end
+ end
+ 
 end
